@@ -16,7 +16,7 @@ class Program
         {
             sign = "+";
         }
-        else if (gradePercentage % 10 >= 7)
+        else if (gradePercentage % 10 <= 3)
         {
             sign = "-";
         }
