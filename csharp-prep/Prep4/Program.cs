@@ -9,7 +9,7 @@ class Program
         Console.Write("Enter some numbers, enter 0 to stop: ");
         while (true)
         {
-            Console.WriteLine("");
+            Console.WriteLine(""); 
             int n = int.Parse(Console.ReadLine());
             numbers.Add(n);
 
