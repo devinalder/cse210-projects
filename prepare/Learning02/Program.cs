@@ -17,5 +17,14 @@ class Program
         job2._endYear = 2017;
 
         job2.DisplayJobDetails();
+
+
+        Resume myResume = new Resume();
+        myResume._name = "Devin Alder";
+
+        myResume._jobs.Add(job1);
+        myResume._jobs.Add(job2);
+
+        myResume.DisplayResumeDetails();
     }
 }

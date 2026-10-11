@@ -6,6 +6,6 @@ class Program
     {
         Console.WriteLine("Hello circle");
 
-        Circle myCircle 
+        
     }
 }
