@@ -4,8 +4,15 @@ class Program
 {
     static void Main()
     {
-        Console.WriteLine("Hello circle");
+        int x = 10;
+        
 
         
     }
+
+
+
+    //example of consturctions
+
+    
 }
