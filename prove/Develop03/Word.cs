@@ -1,46 +1,40 @@
+using System;
+
 class Word
 {
-    private bool _hidden;
-    private string _word;
+    private string _text;
+    private bool _isHidden;
 
-    public Word(string word)
+    public Word(string text)
     {
-        _word = word;
-        _hidden = false;
+        _text = text;
+        _isHidden = false;
     }
 
     public void Hide()
     {
-        _hidden = true;
-    }
-
-    public void Show()
-    {
-        _hidden = false;
+        _isHidden = true;
     }
 
     public bool IsHidden()
     {
-        return _hidden;
+        return _isHidden;
     }
 
-    public void Display()
+    public string GetDisplayText()
     {
-        Console.Write($"{GetWordString()} ");
-    }
-
-    public string GetWordString()
-    {
-        if (!_hidden)
+        if (_isHidden == true)
         {
-            return _word;
+            string underscores = "";
+            for (int i = 0; i < _text.Length; i++)
+            {
+                underscores = underscores + "_";
+            }
+            return underscores;
         }
-
-        string returnString = "";
-        foreach (char c in _word)
+        else
         {
-            returnString += char.IsLetterOrDigit(c) ? '_' : c;
+            return _text;
         }
-        return returnString;
     }
 }

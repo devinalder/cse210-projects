@@ -1,50 +1,65 @@
+using System;
+using System.Collections.Generic;
+
 class Scripture
 {
     private Reference _reference;
-    private List<Word> _words;
+    private List<Word> _words = new List<Word>();
     private Random _random = new Random();
 
     public Scripture(Reference reference, string text)
     {
         _reference = reference;
-        _words = new List<Word>();
 
-        foreach (string part in text.Split(' ', StringSplitOptions.RemoveEmptyEntries))
+        string[] parts = text.Split(" ");
+        foreach (string part in parts)
         {
-            _words.Add(new Word(part));
+            Word word = new Word(part);
+            _words.Add(word);
         }
     }
 
     public void HideRandomWords(int numberToHide)
     {
-        List<Word> visible = _words.Where(w => !w.IsHidden()).ToList();
-
-        for (int i = 0; i < numberToHide && visible.Count > 0; i++)
+        for (int i = 0; i < numberToHide; i++)
         {
-            int index = _random.Next(visible.Count);
-            visible[index].Hide();
-            visible.RemoveAt(index);
+            if (IsCompletelyHidden() == true)
+            {
+                return;
+            }
+
+            int index = _random.Next(_words.Count);
+
+            while (_words[index].IsHidden() == true)
+            {
+                index = _random.Next(_words.Count);
+            }
+
+            _words[index].Hide();
         }
     }
 
     public bool IsCompletelyHidden()
     {
-        return _words.All(w => w.IsHidden());
-    }
-
-    public int GetHiddenCount()
-    {
-        return _words.Count(w => w.IsHidden());
-    }
-
-    public int GetWordCount()
-    {
-        return _words.Count;
+        foreach (Word word in _words)
+        {
+            if (word.IsHidden() == false)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public string GetDisplayText()
     {
-        string text = string.Join(" ", _words.Select(w => w.GetWordString()));
-        return $"{_reference.GetDisplayText()}\n{text}";
+        string text = _reference.GetDisplayText() + "\n";
+
+        foreach (Word word in _words)
+        {
+            text = text + word.GetDisplayText() + " ";
+        }
+
+        return text;
     }
 }

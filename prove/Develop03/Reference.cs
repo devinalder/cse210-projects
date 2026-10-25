@@ -1,3 +1,5 @@
+using System;
+
 class Reference
 {
     private string _book;
@@ -25,8 +27,11 @@ class Reference
     {
         if (_startVerse == _endVerse)
         {
-            return $"{_book} {_chapter}:{_startVerse}";
+            return _book + " " + _chapter + ":" + _startVerse;
         }
-        return $"{_book} {_chapter}:{_startVerse}-{_endVerse}";
+        else
+        {
+            return _book + " " + _chapter + ":" + _startVerse + "-" + _endVerse;
+        }
     }
 }
